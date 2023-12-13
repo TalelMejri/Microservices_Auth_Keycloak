@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="template">
+<head>
+    <meta charset="UTF-8">
+    <title>Bill</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container mt-3">
+        <div class="card">
+            <div class="card-header">
+                List Bill
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Billing Date</th>
+                        <th>Customer</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text="${bill.bill.id}"></td>
+                        <td th:text="${bill.bill.billingDate}"></td>
+                        <td>
+                            <table class="table table-sm">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                </tr>
+                                <tr>
+                                    <td th:text="${bill.bill.customer.id}"></td>
+                                    <td th:text="${bill.bill.customer.name}"></td>
+                                    <td th:text="${bill.bill.customer.email}"></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="table table-bordered mt-3">
+                    <thead>
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="item : ${bill.bill.productItems}">
+                        <td th:text="${item.product.id}"></td>
+                        <td th:text="${item.product.name}"></td>
+                        <td th:text="${item.price}"></td>
+                        <td th:text="${item.quantity}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
